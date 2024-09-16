@@ -1,5 +1,8 @@
-import matplotlib.pyplot as plt
 import math
+
+import matplotlib.pyplot as plt
+from math import tan,pi
+
 
 
 class VECTORS_MATH():
@@ -7,6 +10,20 @@ class VECTORS_MATH():
         self.dino_vectors = [(6,4),(3,1),(1,2),(-1,5),(-2,5),(-3,4),(-4,4),(-5,3),(-5,2),
                              (-2,2),(-5,1),(-4,0),(-2,1),(-1,0),(0,-3),(-1,-4),(1,-4),
                              (2,-3),(1,-2),(3,-1),(5,1),(6,4)]
+    def cartesian_to_polor(self,vector1):
+        return (math.sqrt(vector1[0]**2+vector1[1]**2),math.atan2(vector1[1],vector1[0]))
+    def polor_to_cartesian(self,vector1):
+        return (vector1[0]*math.cos(vector1[1]),vector1[0]*math.sin((vector1[1])))
+
+    def vectors_change_angle(self,vector1,angle):
+        tmp_polor_vector = self.cartesian_to_polor(vector1)
+        return self.polor_to_cartesian((tmp_polor_vector[0],angle + tmp_polor_vector[1]))
+
+    def revolve_image(self):
+        tmp_buff = []
+        for i in self.dino_vectors:
+            tmp_buff.append(self.vectors_change_angle(i,pi/15))
+        self.op_draw_line(tmp_buff)
 
     def vectors_add(self,vector1,vector2):
         return (vector1[0]+vector2[0],vector1[1]+vector2[1])
@@ -116,7 +133,13 @@ class VECTORS_MATH():
         plt.show()
 
     def show(self):
-        self.generate_distance()
+        #self.op_draw_line(self.dino_vectors)
+        self.revolve_image()
+
+
+        #print(self.vectors_change_polor((1,90)))
+
+        #self.generate_distance()
 
         #self.generate_image_x100()
 
