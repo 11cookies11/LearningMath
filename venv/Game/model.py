@@ -6,7 +6,7 @@ from settings import SETTINGS
 class PolygonModel():
     def __init__(self,points):
         self.points = points
-        self.rotation_angle = math.pi/2
+        self.rotation_angle = math.pi*2
         self.x = 0
         self.y = 0
         self.length = 0
@@ -26,8 +26,6 @@ class Ship(PolygonModel):
             result_points.append((tmp_xy_coordinate[0]+self.x,tmp_xy_coordinate[1]+self.y))
         return result_points
 
-
-        return [(x+self.x,y+self.y) for x,y in self.points]
 
     def op_attack(self):
         xy_coordinate = self.vector.to_polar_coordinate(self.points[2])
